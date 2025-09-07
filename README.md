@@ -1,0 +1,1 @@
+This is the pending readme for the binary tree exercices
