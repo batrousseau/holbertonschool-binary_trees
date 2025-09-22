@@ -3,6 +3,26 @@
 #include "binary_trees.h"
 
 /**
+ * is_superior - compare two numbers
+ * @a: first number
+ * @b: second number
+ * Return: the superior number
+ */
+
+int is_superior (int a, int b)
+{
+	if( a >= b)
+	{
+		return (a);
+	}
+	else 
+	{
+		return (b);
+	}
+
+}
+
+/**
  * binary_tree_height - measures the height of
  * a binary tree
  * @tree: tree to measure
@@ -17,21 +37,13 @@ int right = 0;
 
 if (tree == NULL)
 {
-	return (0);
+	return (-1);
 }
 
 left = binary_tree_height(tree->left);
 right = binary_tree_height(tree->right);
 
-if (left > right)
-{
-	height = 1 + left;
-}
-else
-{
-	height = 1 + right;
-}
-
+height = 1 + is_superior(left, right);
 
 return (height);
 }
