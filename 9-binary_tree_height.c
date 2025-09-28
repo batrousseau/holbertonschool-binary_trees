@@ -9,13 +9,13 @@
  * Return: the superior number
  */
 
-int is_superior (int a, int b)
+int is_superior(int a, int b)
 {
-	if( a >= b)
+	if (a >= b)
 	{
 		return (a);
 	}
-	else 
+	else
 	{
 		return (b);
 	}
@@ -34,16 +34,19 @@ size_t binary_tree_height(const binary_tree_t *tree)
 size_t height = 0;
 int left = 0;
 int right = 0;
+int from_left = 0;
+int from_right = 0;
 
 if (tree == NULL)
 {
-	return (-1);
+	return (0);
 }
 
 left = binary_tree_height(tree->left);
 right = binary_tree_height(tree->right);
+from_left = tree->left ? 1 + left : 0;
+from_right = tree->right ? 1 + right : 0;
 
-height = 1 + is_superior(left, right);
-
+height = is_superior(from_left, from_right);
 return (height);
 }
