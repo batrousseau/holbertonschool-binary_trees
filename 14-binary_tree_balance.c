@@ -64,10 +64,13 @@ int balance = 0;
 int left = 0;
 int right = 0;
 
+if (tree == NULL)
+{
+	return (0);
+}
+
 left = binary_tree_height(tree->left);
 right = binary_tree_height(tree->right);
-
-printf("Left is %d and right is %d\n", left, right);
 
 balance = left - right;
 
