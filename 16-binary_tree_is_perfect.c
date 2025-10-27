@@ -3,26 +3,6 @@
 #include "binary_trees.h"
 
 /**
- * is_superior - compare two numbers
- * @a: first number
- * @b: second number
- * Return: the superior number
- */
-
-int is_superior(int a, int b)
-{
-	if (a >= b)
-	{
-		return (a);
-	}
-	else
-	{
-		return (b);
-	}
-
-}
-
-/**
  * binary_tree_height - measures the height of
  * a binary tree
  * @tree: tree to measure
@@ -30,7 +10,6 @@ int is_superior(int a, int b)
  */
 size_t binary_tree_height(const binary_tree_t *tree)
 {
-
 size_t height = 0;
 int left = 0;
 int right = 0;
@@ -47,7 +26,15 @@ right = binary_tree_height(tree->right);
 from_left = tree->left ? 1 + left : 0;
 from_right = tree->right ? 1 + right : 0;
 
-height = is_superior(from_left, from_right);
+if (from_left >= from_right)
+{
+	height = from_left;
+}
+else
+{
+	height = from_right;
+}
+
 return (height);
 }
 
@@ -79,6 +66,55 @@ return (balance);
 
 
 /**
+ * binary_tree_is_full - check if the tree is full
+ * @tree: pointer to root of tree
+ * Return: 1 if full, 0 if not or tree is NULL
+ */
+
+int binary_tree_is_full(const binary_tree_t *tree)
+{
+int full = 0;
+int left = 0;
+int right = 0;
+
+
+if (tree == NULL)
+{
+	return (0);
+}
+
+if (tree->left == NULL && tree->right == NULL)
+{
+	return (1);
+}
+
+if (tree->left == NULL || tree->right == NULL)
+{
+	return (0);
+}
+
+if (tree->left && tree->right)
+{
+	left = binary_tree_is_full(tree->left);
+	right = binary_tree_is_full(tree->right);
+
+	if (left <= right)
+	{
+		full = left;
+	}
+	else
+	{
+		full = right;
+	}
+
+	return (full);
+}
+
+return (404);
+}
+
+
+/**
  * binary_tree_is_perfect - checks if a tree is perfect
  * @tree: root node
  * Return: 1 if perfect, 0 if not or root NULL
@@ -97,7 +133,7 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 
 	if (perfect == 0)
 	{
-		perfect = 1;
+		perfect = binary_tree_is_full(tree);
 	}
 	else
 	{
