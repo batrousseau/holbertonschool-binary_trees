@@ -122,6 +122,8 @@ return (404);
 
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
+	int balanced = 0;
+	int full = 0;
 	int perfect = 0;
 
 	if (tree == NULL)
@@ -129,11 +131,12 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 		return (0);
 	}
 
-	perfect = binary_tree_balance(tree);
+	balanced = binary_tree_balance(tree);
+	full = binary_tree_is_full(tree);
 
-	if (perfect == 0)
+	if (balanced == 0 && full == 1)
 	{
-		perfect = binary_tree_is_full(tree);
+		perfect = 1;
 	}
 	else
 	{
