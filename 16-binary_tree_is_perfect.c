@@ -170,7 +170,7 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 	full = binary_tree_is_full(tree);
 	leaf_number = binary_tree_leaves(tree);
 
-	if (balanced == 0 && full == 1 && leaf_number % 2 == 0)
+	if (balanced == 0 && full == 1 && (leaf_number % 2 == 0 || leaf_number == 1))
 	{
 		perfect = 1;
 	}
